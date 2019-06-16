@@ -54,8 +54,11 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 
-
-
+"Airline configs
+let g:airline_powerline_fonts = 1
+let g:airline_detect_modified = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 
 "ALE CONFIGS
 let g:ale_linter_aliases = {'svelte': ['css', 'javascript', 'html']}
