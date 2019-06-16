@@ -9,7 +9,8 @@ Plug 'vim-airline/vim-airline-themes'
 Plug '907th/vim-auto-save'
 Plug 'mattn/emmet-vim'
 Plug 'w0rp/ale'
-Plug 'burner/vim-svelte'
+"Plug 'burner/vim-svelte'
+Plug 'evanleck/vim-svelte'
 
 call plug#end()
 
@@ -43,6 +44,11 @@ autocmd VimEnter * NERDTree
 autocmd VimEnter * :nohlsearch
 autocmd FileType html,css EmmetInstall
 
+" Remaps
+nnoremap <silent> <tab> :if &modifiable && !&readonly && &modified <CR> :write<CR> :endif<CR>:bnext<CR>
+nnoremap <silent> <s-tab> :if &modifiable && !&readonly && &modified <CR> :write<CR> :endif<CR>:bprevious<CR>
+nnoremap <silent> <C-n> :NERDTree<CR>
+
 "syntastic
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -53,7 +59,6 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-
 "Airline configs
 let g:airline_powerline_fonts = 1
 let g:airline_detect_modified = 1
@@ -62,4 +67,4 @@ let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 
 "ALE CONFIGS
 let g:ale_linter_aliases = {'svelte': ['css', 'javascript', 'html']}
-let g:ale_linters = {'svelte': ['prettier', 'eslint']}
+let g:ale_linters = {'svelte': ['prettier']}

@@ -74,12 +74,6 @@
 			"never"
 		],
 		"comma-style": "error",
-		"key-spacing": [
-			"error",
-			{
-				"beforeColon": true
-			}
-		],
 		"no-lonely-if": "error",
 		"no-multiple-empty-lines": "error",
 		"object-curly-newline": [
