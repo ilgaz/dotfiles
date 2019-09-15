@@ -1,9 +1,9 @@
 {
-	"window.zoomLevel": 0,
+	"window.zoomLevel": 1,
 	"files.autoSave": "off",
 	"files.autoSaveDelay": 2500,
-	"editor.fontSize": 15,
-	"editor.fontFamily": "'Fira Code'",
+	"editor.fontSize": 18,
+	"editor.fontFamily": "Fira Code",
 	"editor.fontLigatures": true,
 	"editor.tabSize": 2,
 	"editor.cursorStyle": "line-thin",
@@ -15,16 +15,15 @@
 	"editor.cursorBlinking": "smooth",
 	"editor.cursorSmoothCaretAnimation": true,
 	"editor.fontWeight": "bold",
-	"editor.minimap.enabled": true,
+	"editor.minimap.enabled": false,
 	"editor.snippetSuggestions": "top",
 	"files.insertFinalNewline": true,
 	"files.maxMemoryForLargeFilesMB": 12288,
 	"workbench.startupEditor": "none",
 	"workbench.activityBar.visible": true,
-	"workbench.colorTheme": "Material Theme Palenight High Contrast",
 	"workbench.sideBar.location": "right",
 	"workbench.list.horizontalScrolling": true,
-	"breadcrumbs.enabled": false,
+	"breadcrumbs.enabled": true,
 	"workbench.editor.labelFormat": "short",
 	"window.doubleClickIconToClose": true,
 	"window.restoreFullscreen": true,
@@ -52,9 +51,12 @@
 	"prettier.useTabs": true,
 	"[javascript]": {
 		"editor.formatOnSave": false,
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
+		"editor.defaultFormatter": "vscode.typescript-language-features"
 	},
 	"[javascriptreact]": {
 		"editor.formatOnSave": false
-	}
+	},
+	"workbench.colorTheme": "Panda Syntax",
+	"terminal.integrated.rendererType": "dom",
+	"explorer.confirmDragAndDrop": false
 }

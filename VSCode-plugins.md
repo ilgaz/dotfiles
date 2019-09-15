@@ -1,0 +1,18 @@
+- Better TOML
+- Color Highlight
+- Debugger for Chrome
+- Docker
+- ESLint
+- Eva Theme
+- fish-vscode
+- Live Server
+- Material Icon Theme
+- NGINX Configuration
+- Polacode
+- Quokka.js
+- Rust (rls)
+- SQL Server (mssql)
+- stylelint
+- Svelte
+- Svelte Intellisense
+- Vetur

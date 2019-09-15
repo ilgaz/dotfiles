@@ -3,6 +3,8 @@ abbr -a c clear
 abbr -a l 'exa'
 abbr -a ls 'exa'
 abbr -a ll "exa -lah --color=always | sed -re 's/^[^ ]* //'"
+abbr -a ll_ss "exa -lah --color=always --sort=size | sed -re 's/^[^ ]* //'"
+abbr -a lld "exa -lah --color=always -D | sed -re 's/^[^ ]* //'"
 abbr -a cat 'bat'
 abbr -a v 'vim'
 abbr -a x exit
@@ -11,9 +13,12 @@ abbr -a x exit
 abbr -a co code-insiders
 abbr -a cox code-insiders .
 abbr -a vim nvim
+
 # misc utils 
 abbr -a cl "clear; exa"
 abbr -a cll "clear; exa -lah --color=always | sed -re 's/^[^ ]* //'"
+abbr -a cll_ss "clear; exa -lah --color=always --sort=size | sed -re 's/^[^ ]* //'"
+abbr -a clld "clear; exa -lah --color=always -D | sed -re 's/^[^ ]* //'"
 
 # VPN
 abbr -a vpn expressvpn connect
@@ -44,13 +49,17 @@ abbr -a celar clear
 abbr -a elar clear
 abbr -a sl exa
 
+# eval
 
-# PATH
+eval (starship init fish)
+
+#PATH
 
 set PATH ~/.cargo/bin $PATH
 set PATH /usr/bin $PATH
-set PATH ~/.local/bin $PATH
-set PATH /usr/local/go/bin/ $PATH
+set PATH ~/.npm-global/bin $PATH
+
+
 # Functions
 
 function fish_greeting
