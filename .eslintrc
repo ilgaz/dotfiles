@@ -1,16 +1,22 @@
 {
-	"extends": [
-		"airbnb",
-		"prettier"
-	],
+	"extends": ['airbnb'],
+	"env": {
+		"node": true,
+		"es6": true
+	},
 	"parserOptions": {
-		"ecmaVersion": 6,
+		"ecmaVersion": 8,
 		"sourceType": "module",
 		"ecmaFeatures": {
 			"jsx": true
 		}
 	},
 	"rules": {
+		"no-param-reassign": "off",
+		"no-unused-expressions": "off",
+		"no-use-before-define": "off",
+		"no-console": "off",
+		"func-names": "off",
 		"for-direction": "error",
 		"no-compare-neg-zero": 2,
 		"no-cond-assign": 2,
@@ -55,7 +61,7 @@
 				"builtinGlobals": true
 			}
 		],
-		"no-unused-vars": "error",
+		"no-unused-vars": "warn",
 		"global-require": "error",
 		"array-bracket-newline": [
 			"error",
@@ -85,10 +91,6 @@
 		"quotes": [
 			"error",
 			"single"
-		],
-		"space-in-parens": [
-			"error",
-			"always"
 		],
 		"arrow-body-style": [
 			"error",
