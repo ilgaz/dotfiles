@@ -8,11 +8,13 @@ abbr -a lld "exa -lah --color=always -D | sed -re 's/^[^ ]* //'"
 abbr -a cat 'bat'
 abbr -a v 'vim'
 abbr -a x exit
+abbr -a q exit
 
 # apps
 abbr -a co code-insiders
 abbr -a cox code-insiders .
 abbr -a vim nvim
+abbr -a w wtf #symlink to wtfutils
 
 # misc utils 
 abbr -a cl "clear; exa"
@@ -39,6 +41,7 @@ abbr -a cb cargo build
 abbr -a ni "npm install --save"
 abbr -a ng "npm install -g"
 abbr -a ns "npm start"
+abbr -a nt "npm test"
 
 # Aliases to cover situations when I act like a meme
 
@@ -58,7 +61,6 @@ eval (starship init fish)
 set PATH ~/.cargo/bin $PATH
 set PATH /usr/bin $PATH
 set PATH ~/.npm-global/bin $PATH
-
 
 # Functions
 

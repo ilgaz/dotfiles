@@ -1,0 +1,116 @@
+wtf:
+  colors:
+    border:
+      focusable: darkslateblue
+      focused: orange
+      normal: gray
+  term: "xterm-256color"
+  grid:
+    columns: [32, 32, 32, 32]
+    rows: [10, 10, 10, 4, 4]
+  refreshInterval: 1
+  mods:
+    clocks_a:
+      colors:
+        rows:
+          even: "lightblue"
+          odd: "white"
+      enabled: true
+      locations:
+        Istanbul: "Asia/Istanbul"
+        Sydney: "Australia/Sydney"
+        Dubai: "Asia/Dubai"
+      position:
+        top: 3
+        left: 3
+        height: 1
+        width: 1
+      refreshInterval: 15
+      sort: "alphabetical"
+      title: "Clocks A"
+      type: "clocks"
+      feedreader:
+      enabled: true
+      feeds:
+        - http://wtfutil.com/blog/index.xml
+      feedLimit: 10
+      position:
+        top: 2
+        left: 1
+        width: 1
+        height: 1
+      updateInterval: 14400
+    ipinfo:
+      colors:
+        name: "lightblue"
+        value: "white"
+      enabled: false
+      position:
+        top: 0
+        left: 0
+        height: 1
+        width: 1
+      refreshInterval: 150
+    hackernews:
+      enabled: true
+      numberOfStories: 30
+      position:
+        top: 1
+        left: 1
+        height: 1
+        width: 2
+      storyType: top
+      refreshInterval: 900
+    weather:
+      apiKey: WTF_OWM_API_KEY
+      cityids:
+      - 745044
+      border: true
+      colors:
+        current: "pink"
+      enabled: true
+      language: "EN"
+      position:
+        top: 0
+        left: 2
+        height: 1
+        width: 3
+      refreshInterval: 900
+      tempUnit: "C"
+    power:
+      enabled: true
+      position:
+        top: 0
+        left: 1
+        height: 1
+        width: 1
+      refreshInterval: 15
+      title: "⚡️"
+    todo:
+      checkedIcon: "X"
+      colors:
+        checked: gray
+        highlight:
+          fore: "black"
+          back: "orange"
+      enabled: true
+      filename: "todo.yml"
+      position:
+        top: 1
+        left: 0
+        height: 2
+        width: 1
+      refreshInterval: 3600
+    digitalclock:
+      color: blue
+      enabled: true
+      font: bigfont
+      hourFormat: 24
+      position:
+        top: 0
+        left: 0
+        height: 1
+        width: 1
+      refreshInterval: 1
+      title: "big clock"
+      type: "digitalclock"
