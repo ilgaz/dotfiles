@@ -17,10 +17,10 @@ Plug 'stephpy/vim-yaml'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'dag/vim-fish'
-"Plug 'ycm-core/YouCompleteMe'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
+Plug 'ycm-core/youcompleteme'
+Plug 'airblade/vim-gitgutter'
 
 call plug#end()
 
