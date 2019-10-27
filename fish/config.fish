@@ -9,18 +9,28 @@ abbr -a cat 'bat'
 abbr -a v 'vim'
 abbr -a x exit
 abbr -a q exit
+abbr -a ipc "curl 'http://ipinfo.io' | grep 'country'"
 
 # apps
 abbr -a co code-insiders
 abbr -a cox code-insiders .
 abbr -a vim nvim
-abbr -a w wtf #symlink to wtfutils
+abbr -a j jasmine
+abbr -a haskell ghci
+abbr -a hs ghci
+abbr -a sx subl .
+abbr -a gg git gui
+abbr -a r rtv
 
 # misc utils 
 abbr -a cl "clear; exa"
 abbr -a cll "clear; exa -lah --color=always | sed -re 's/^[^ ]* //'"
 abbr -a cll_ss "clear; exa -lah --color=always --sort=size | sed -re 's/^[^ ]* //'"
 abbr -a clld "clear; exa -lah --color=always -D | sed -re 's/^[^ ]* //'"
+abbr -a .. cd ..
+abbr -a ... cd ../../
+abbr -a .... cd ../../../
+
 
 # VPN
 abbr -a vpn expressvpn connect
