@@ -38,7 +38,9 @@ set autoread
 set noswapfile
 set laststatus=2
 set completeopt=noinsert,menuone,noselect
+set updatetime=100
 "utils
+let mapleader='/'
 let g:airline_theme='deus'
 let g:solarized_termcolors=256 
 let g:auto_save = 1
@@ -49,7 +51,8 @@ let g:ale_lint_on_save = 1
 let g:ale_fix_on_save = 1
 let b:ale_fixers = ['prettier', 'eslint']
 let g:deoplete#enable_at_startup = 1
-syntax enable
+
+syntax on
 filetype plugin indent on
 compiler fish
 setlocal foldmethod=expr
@@ -68,9 +71,12 @@ autocmd FileType html,css EmmetInstall
 autocmd FileType vim let b:vcm_tab_complete = 'vim'
 
 " Remaps
-"nnoremap <silent> <tab> :if &modifiable && !&readonly && &modified <CR> :write<CR> :endif<CR>:bnext<CR>
-"nnoremap <silent> <s-tab> :if &modifiable && !&readonly && &modified <CR> :write<CR> :endif<CR>:bprevious<CR>
+nnoremap <silent> <C-tab> :if &modifiable && !&readonly && &modified <CR> :write<CR> :endif<CR>:bnext<CR>
+"nnoremap <silent> <C-tab> :if &modifiable && !&readonly && &modified <CR> :write<CR> :endif<CR>:bprevious<CR>
 nnoremap <silent> <C-b> :NERDTreeToggle<CR>
+nnoremap <silent> <C-g> :GitGutterLineHighlightsToggle<CR>
+nmap ghp <Plug>(GitGutterPreviewHunk)
+vnoremap <leader>y "+y" 
 
 "syntastic
 set statusline+=%#warningmsg#
@@ -88,8 +94,12 @@ let g:airline_detect_modified = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 
-"ALE CONFIGS
-let g:ale_linter_aliases = {'svelte': ['css', 'javascript', 'html']}
-let g:ale_linters = {'svelte': ['prettier']}
-
 au Filetype rust source ~/.config/vim_scripts/spacetab.vim
+
+
+
+highlight clear SignColumn
+highlight GitGutterAdd ctermfg=green
+highlight GitGutterChange ctermfg=yellow
+highlight GitGutterDelete ctermfg=red
+highlight GitGutterChangeDelete ctermfg=yellow
