@@ -1,14 +1,5 @@
-nnoremap <silent> <leader>j <C-w>j
-nnoremap <silent> <leader>k <C-w>k
-nnoremap <silent> <leader>l <C-w>l
-nnoremap <silent> <leader>h <C-w>h
-nnoremap <silent> <leader>n :bn<CR>
-nnoremap <silent> <leader>p :bp<CR>
-nnoremap <silent> <leader>d :bd<CR>
 nnoremap <silent> <C-t> :NERDTreeToggle<CR>
 nnoremap <silent> <C-b> :BuffergatorToggle<CR>
-nnoremap <silent> <C-h> :UndotreeToggle<CR><C-w>50h<CR>
-nnoremap <silent> <C-p> :Files<CR>
 nnoremap <silent> <C-l> :GitGutterLineHighlightsToggle<CR>
 nmap <silent> <C-G> :G<CR>
 nmap ghv <Plug>(GitGutterPreviewHunk)
@@ -19,30 +10,23 @@ tnoremap <Esc> <C-\><C-n>
 nnoremap <silent> <C-]> <C-^>
 nmap ghn <Plug>(GitGutterNextHunk)
 nmap ghp <Plug>(GitGutterPrevHunk)
+nnoremap ghu :SignifyHunkUndo<CR>
+nnoremap ghs :SignifyHunkDiff<CR>
+nnoremap <C-w><space> :MaximizerToggle<CR>
+nnoremap <leader>f :RG <C-R>=expand("<cword>")<CR><CR>
 
-nnoremap <silent> <leader>co  :<C-u>CocList outline<cr>
-nnoremap <silent> <leader>cs  :<C-u>CocList -I symbols<cr>
+"LUA
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+imap <silent> <c-space> <Plug>(completion_trigger)
 
-" List errors
-nnoremap <silent> <leader>cl  :<C-u>CocList locationlist<cr>
 
-" list commands available in tsserver (and others)
-nnoremap <silent> <leader>cc  :<C-u>CocList commands<cr>
-
-" restart when tsserver gets wonky
-nnoremap <silent> <leader>cR  :<C-u>CocRestart<CR>
-
-" view all errors
-nnoremap <silent> <leader>cl  :<C-u>CocList locationlist<CR>
-
-" manage extensions
-nnoremap <silent> <leader>cx  :<C-u>CocList extensions<cr>
-
-" rename the current word in the cursor
-nmap <leader>gr  <Plug>(coc-rename)
-nmap <leader>cf  <Plug>(coc-format-selected)
-vmap <leader>cf  <Plug>(coc-format-selected)
-
-" run code actions
-vmap <leader>ca  <Plug>(coc-codeaction-selected)
-nmap <leader>ca  <Plug>(coc-codeaction-selected)
+nnoremap <leader>d :lua vim.lsp.buf.definition()<CR>
+nnoremap <leader>i :lua vim.lsp.buf.implementation()<CR>
+"nnoremap <leader>vsh :lua vim.lsp.buf.signature_help()<CR>
+nnoremap <leader>n :lua vim.lsp.buf.references()<CR>
+nnoremap <leader>r :lua vim.lsp.buf.rename()<CR>
+nnoremap <leader>o :lua vim.lsp.buf.hover()<CR>
+nnoremap <leader>ca :lua vim.lsp.buf.code_action()<CR>
+nnoremap <leader>g :lua require('telescope.builtin').live_grep(require('telescope.themes').get_dropdown({}))<CR>
+nnoremap <C-p> :lua require('telescope.builtin').git_files(require('telescope.themes').get_dropdown({}))<CR>
