@@ -69,5 +69,9 @@ alias ls=exa
 alias exıt=exit
 alias nvım=nvim
 
+git-latest {
+	git reflog | grep 'checkout' | grep -o -E 'to .*' | awk '{print $2}' | sort | uniq
+}
+
 # ------------- ALIASES DONE -----------------
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
