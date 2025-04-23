@@ -15,6 +15,8 @@
 (beacon-mode 1)
 (delete-selection-mode 1)
 
+(load-theme 'cyberpunk t)
+
 (setq auth-sources '("~/.authinfo.gpg" "~/.authinfo"))
 
 ;; hydras

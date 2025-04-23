@@ -16,10 +16,7 @@
   (which-key-mode))
 
 (use-package base16-theme
-  :ensure t
-  :config
-  (load-theme 'snazzy t)
-  )
+  :ensure t)
 
 (use-package helpful
   :defer t)

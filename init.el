@@ -18,18 +18,25 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
+(defvar emacs-config-directory "~/.config/emacs-config")
 
-(let* ((emacs-config-directory "~/.config/emacs-config"))
-  (setq custom-theme-directory "~/.config/emacs-config/themes/")
+(let ((default-directory emacs-config-directory))
+  (normal-top-level-add-to-load-path '("."))
+  (normal-top-level-add-subdirs-to-load-path)
+  
+  (require 'beacon)
+  (require 'golden-ratio))
 
-  (let ((default-directory (expand-file-name "lib" emacs-config-directory)))
+(defvar emacs-lib-directory (expand-file-name "lib" emacs-config-directory))
+(defvar emacs-themes-directory (expand-file-name "themes" emacs-config-directory))
 
-    (normal-top-level-add-subdirs-to-load-path)
-    (require 'beacon)
-    (require 'golden-ratio))
+(add-to-list 'custom-theme-load-path emacs-themes-directory)
+(dolist (theme-dir (directory-files emacs-themes-directory t "^[^.]"))
+  (when (file-directory-p theme-dir)
+    (add-to-list 'custom-theme-load-path theme-dir)))
 
-  (load (expand-file-name "packages.el" emacs-config-directory))
-  (load (expand-file-name "config.el" emacs-config-directory)))
+(load (expand-file-name "packages.el" emacs-config-directory))
+(load (expand-file-name "config.el" emacs-config-directory))
 
 (require 'auth-source-pass)
 

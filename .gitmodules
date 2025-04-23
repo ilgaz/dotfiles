@@ -4,3 +4,9 @@
 [submodule "lib/golden-ratio"]
 	path = lib/golden-ratio
 	url = https://github.com/roman/golden-ratio.el.git
+[submodule "themes/zweilight"]
+	path = themes/zweilight
+	url = https://github.com/emacsattic/zweilight-theme
+[submodule "themes/cyberpunk-theme"]
+	path = themes/cyberpunk-theme
+	url = https://github.com/n3mo/cyberpunk-theme.el
