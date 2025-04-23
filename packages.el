@@ -291,8 +291,8 @@
 
 (use-package lsp-mode
   :hook (
-	 (lsp-mode . sideline-mode)
-	 (lsp-mode . hs-minor-mode)
+	 (lsp-mode-hook . sideline-mode)
+	 (lsp-mode-hook . hs-minor-mode)
 	 )
   :config
   (setq lsp-keymap-prefix "s-l"
@@ -343,8 +343,8 @@
   (let ((sideline-font-height 280)
 	(sideline-backend-height (truncate (* 280 0.7)))
 	)
-    (set-face-attribute 'sideline-flycheck-error nil    :family "IBM Plex Sans" :weight 'thin :height sideline-font-height)
-    (set-face-attribute 'sideline-flycheck-warning nil  :family "IBM Plex Sans" :weight 'thin :height sideline-font-height)
+    (set-face-attribute 'sideline-flycheck-error nil    :family "IBM Plex Sans" :weight 'thin :height sideline-font-height :foreground "firebrick3")
+    (set-face-attribute 'sideline-flycheck-warning nil  :family "IBM Plex Sans" :weight 'thin :height sideline-font-height :foreground "goldenrod2")
     (set-face-attribute 'sideline-flycheck-info nil     :family "IBM Plex Sans" :weight 'thin :height sideline-font-height :slant 'italic :foreground "#00b3b3")
     (set-face-attribute 'sideline-backend nil           :family "IBM Plex Sans" :weight 'thin :height sideline-backend-height :width 'semi-expanded :italic t :foreground "#e6e6e6")))
 
@@ -422,6 +422,10 @@
    ("M-b" . dirvish-history-go-backward)
    ("M-e" . dirvish-emerge-menu)))
 
+
+(use-package org-bullets
+  :hook (org-mode-hook . (lambda () (org-bullets-mode 1))))
+
 (use-package gptel
   :config
   (setq  gptel-backend (gptel-make-openai "Groq"
@@ -442,17 +446,74 @@
 				   compound-beta
 				   compound-beta-mini))
 	 gptel-model   'gemma2-9b-it
-	 gptel-default-mode 'org-mode
-	 )
-  (defface gptel-user-font
+	 gptel-default-mode 'org-mode)
+
+  (setopt gptel-prompt-prefix-alist
+          `((markdown-mode . ,(concat "me ›  "))
+            (org-mode . ,(concat  "me ›  "))
+            (text-mode . ,(concat "me ›  ")))
+	  gptel-response-prefix-alist
+	  '((markdown-mode . "ai  ")
+	    (org-mode . "ai  ")
+	    (text-mode . "ai  "))
+
+	  gptel-response-separator "\n\n"
+	  gptel-confirm-tool-calls 'auto
+	  gptel-use-tools t
+	  gptel-display-buffer-action '(display-buffer-in-previous-window)
+	  gptel-org-branching-context nil
+	  gptel-expert-commands t)
+  ;;'(gptel-user-name-font ((t (:inherit default :background "gray97" :foreground "selectedTextBackgroundColor" :inverse-video t :weight bold :family "Roboto Slab"))))
+  (defface gptel-user-name-font
     '((t :family "Inter"
-	 :weight extra-light
-	 :foreground "papayawhip"
-	 :inherit default)) "User text face")
+         :weight semi-bold
+         :foreground "selectedTextBackgroundColor"
+	 :background "gray97"
+         :inverse-video t
+         :inherit default))
+    "User prompt face")
+  (defface gptel-assistant-name-font
+    '((t :family "Inter"
+         :weight semi-bold
+         :foreground "purple"
+	 :background "gray97"
+         :inverse-video t
+         :inherit default))
+    "Assistant prompt face")
+  (defface gptel-assistant-text
+    '((t :family "Inter"
+         :weight light
+         :foreground "pink"
+         :box t
+         :inherit default))
+    "Assistant prelude face, after the prompt")
+  
+  ;; Styling our prompts with font locking
+  (font-lock-add-keywords
+   'org-mode
+   `(("^\\(me ›[ ]?\\)"
+      (1 '(face gptel-user-name-font line-prefix
+                ,(propertize " " 'face 'gptel-user-name-font))))))
+
+  (font-lock-add-keywords
+   'org-mode
+   `(("^\\(ai \\)"
+      (1 '(face gptel-assistant-name-font line-prefix
+                ,(propertize " " 'face 'gptel-assistant-name-font)))
+      )))
+  
+  
   :bind
   (("C-c g g" . gptel-menu)
    ("C-c g x" . gptel-abort)))
 
+(use-package aidermacs
+  :init
+  (setq aidermacs-backend 'vterm)
+  :bind (("C-c a" . aidermacs-transient-menu)))
+
+(use-package bufler
+  :bind (("C-x C-b" . bufler-list)))
 
 ;;; packages.el ends here
 
