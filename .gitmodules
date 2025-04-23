@@ -1,0 +1,6 @@
+[submodule "lib/beacon"]
+	path = lib/beacon
+	url = https://github.com/Malabarba/beacon.git
+[submodule "lib/golden-ratio"]
+	path = lib/golden-ratio
+	url = https://github.com/roman/golden-ratio.el.git
