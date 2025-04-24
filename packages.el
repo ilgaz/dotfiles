@@ -510,6 +510,16 @@
 (use-package forge
   :after magit)
 
+(use-package evil
+  :config
+  (require 'evil)
+  (evil-mode 1)
+  ;; TODO: make this DRY
+  (define-key evil-insert-state-map (kbd "C-z") 'evil-normal-state)
+  (define-key evil-normal-state-map (kbd "C-z") 'evil-normal-state)
+  (define-key evil-visual-state-map (kbd "C-z") 'evil-normal-state)
+  (setq evil-undo-system 'undo-fu)
+  )
 
 ;;; packages.el ends here
 

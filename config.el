@@ -14,6 +14,7 @@
 (golden-ratio-mode 1)
 (beacon-mode 1)
 (delete-selection-mode 1)
+(pixel-scroll-precision-mode 1)
 
 (load-theme 'cyberpunk t)
 

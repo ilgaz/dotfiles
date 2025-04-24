@@ -25,7 +25,8 @@
   (normal-top-level-add-subdirs-to-load-path)
   
   (require 'beacon)
-  (require 'golden-ratio))
+  (require 'golden-ratio)
+  )
 
 (defvar emacs-lib-directory (expand-file-name "lib" emacs-config-directory))
 (defvar emacs-themes-directory (expand-file-name "themes" emacs-config-directory))
@@ -49,20 +50,17 @@
    '("a1c18db2838b593fba371cb2623abd8f7644a7811ac53c6530eebdf8b9a25a8d"
      default))
  '(package-selected-packages
-   '(aggressive-indent aidermacs anzu apheleia base16-theme bufler cape
-		       centaur-tabs colorful-mode
-		       corfu-candidate-overlay corfu-prescient counsel
-		       dired dirvish drag-stuff dumb-jump
-		       expand-region fontaine forge goto-line-preview
-		       helpful highlight-thing hydra ivy-prescient
-		       ivy-yasnippet literate-calc-mode lsp-pyright
-		       lsp-ui magit mini-frame mwim nerd-icons
-		       orderless prettier-js projectile quickrun
-		       rainbow-delimiters reformatter
-		       sideline-flycheck sideline-lsp simpleclip
-		       smartparens solaire-mode string-inflection
-		       telephone-line ts-fold undo-fu undo-fu-session
-		       web-mode yasnippet-snippets))
+   '(ace-window aggressive-indent aidermacs anzu apheleia base16-theme
+		bufler centaur-tabs cfrs colorful-mode corfu-prescient
+		counsel dirvish drag-stuff dumb-jump evil
+		expand-region fontaine forge goto-line-preview gptel
+		helpful highlight-thing ivy-prescient ivy-yasnippet
+		literate-calc-mode lsp-pyright lsp-ui mini-frame mwim
+		nerd-icons orderless org-bullets pfuture prettier-js
+		projectile quickrun rainbow-delimiters reformatter
+		sideline-flycheck sideline-lsp simpleclip smartparens
+		string-inflection telephone-line undo-fu
+		undo-fu-session web-mode yasnippet-snippets))
  '(safe-local-variable-values '((flycheck-disabled-checkers emacs-lisp-checkdoc))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
