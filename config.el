@@ -89,28 +89,6 @@
 
 (autoload 'whitespace-mode "whitespace" "Toggle whitespace visualization." t)
 
-(defun auto-string-inflection ()
-  "Switching by major-mode."
-  (interactive)
-  (cond
-   ;; for emacs-lisp-mode
-   ((eq major-mode 'emacs-lisp-mode)
-    (string-inflection-all-cycle))
-   ;; for python
-   ((eq major-mode 'python-mode)
-    (string-inflection-python-style-cycle))
-   ;; for java
-   ((eq major-mode 'java-mode)
-    (string-inflection-java-style-cycle))
-   ;; for elixir
-   ((eq major-mode 'elixir-mode)
-    (string-inflection-elixir-style-cycle))
-   (t
-    ;; default
-    (string-inflection-ruby-style-cycle))))
-
-(global-set-key (kbd "C-c C-w") 'auto-string-inflection)
-
 (set-frame-font "CommitMono:size=18" nil t)
 
 (global-set-key (kbd "C-c f f") 'hs-toggle-hiding)

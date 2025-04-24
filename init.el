@@ -56,19 +56,20 @@
 		       expand-region fontaine forge goto-line-preview
 		       helpful highlight-thing hydra ivy-prescient
 		       ivy-yasnippet literate-calc-mode lsp-pyright
-		       lsp-ui mwim nerd-icons orderless projectile
-		       quickrun rainbow-delimiters sideline-flycheck
-		       sideline-lsp simpleclip smartparens
-		       solaire-mode string-inflection telephone-line
-		       ts-fold undo-fu undo-fu-session
-		       yasnippet-snippets))
+		       lsp-ui magit mini-frame mwim nerd-icons
+		       orderless prettier-js projectile quickrun
+		       rainbow-delimiters reformatter
+		       sideline-flycheck sideline-lsp simpleclip
+		       smartparens solaire-mode string-inflection
+		       telephone-line ts-fold undo-fu undo-fu-session
+		       web-mode yasnippet-snippets))
  '(safe-local-variable-values '((flycheck-disabled-checkers emacs-lisp-checkdoc))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :extend nil :stipple nil :background "#000000" :foreground "#d3d3d3" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight regular :height 160 :width normal :foundry "nil" :family "CommitMono"))))
+ '(default ((((type graphic)) :family "CommitMono" :height 120)))
  '(fixed-pitch ((t (:family "CommitMono" :height 160))))
  '(flycheck-info ((t (:underline (:color "#00b3b3" :style wave :position nil)))))
  '(lsp-flycheck-info-unnecessary-face ((t (:foreground "gray" :underline (:color "#00b3b3" :style wave :position nil)))) t)

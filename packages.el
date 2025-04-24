@@ -1,4 +1,3 @@
-
 ;;; packages.el --- use-package and all that  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
@@ -195,9 +194,6 @@
 
 (use-package string-inflection)
 
-(use-package apheleia
-  :config
-  (apheleia-global-mode +1)) ;; won't load until first save
 
 (use-package orderless
   :custom
@@ -286,17 +282,12 @@
 
 (use-package lsp-mode
   :hook (
-	 (lsp-mode . sideline-mode) ;; more languages below
+	 (lsp-mode . sideline-mode)
+	 (python-mode-hook . lsp-deferred)
 	 )
   :config
   (setq lsp-keymap-prefix "s-l"
 	))
-
-(use-package lsp-pyright
-  :ensure t
-  :custom (lsp-pyright-langserver-command "pyright")
-  (require 'lsp-pyright)
-  :hook ((lsp-mode-hook . python-mode)))
 
 (use-package lsp-ui
   :ensure t
@@ -457,7 +448,6 @@
 	  gptel-display-buffer-action '(display-buffer-in-previous-window)
 	  gptel-org-branching-context nil
 	  gptel-expert-commands t)
-  ;;'(gptel-user-name-font ((t (:inherit default :background "gray97" :foreground "selectedTextBackgroundColor" :inverse-video t :weight bold :family "Roboto Slab"))))
   (defface gptel-user-name-font
     '((t :family "Inter"
          :weight semi-bold
@@ -519,6 +509,7 @@
 
 (use-package forge
   :after magit)
+
 
 ;;; packages.el ends here
 
