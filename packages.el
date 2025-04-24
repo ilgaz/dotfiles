@@ -144,12 +144,7 @@
   (setq telephone-line-height 18
 	telephone-line-evil-use-short-tag t))
 
-(use-package literate-calc-mode
-  :ensure t
-  :config
-  (add-hook 'markdown-mode-hook 'literate-calc-minor-mode)
-  (add-hook 'org-mode-hook 'literate-calc-minor-mode)
-  )
+(use-package literate-calc-mode)
 
 (use-package nerd-icons)
 
@@ -291,8 +286,7 @@
 
 (use-package lsp-mode
   :hook (
-	 (lsp-mode-hook . sideline-mode)
-	 (lsp-mode-hook . hs-minor-mode)
+	 (lsp-mode . sideline-mode) ;; more languages below
 	 )
   :config
   (setq lsp-keymap-prefix "s-l"
@@ -300,10 +294,9 @@
 
 (use-package lsp-pyright
   :ensure t
-  :custom (lsp-pyright-langserver-command "basedpyright")
-  :hook (python-mode . (lambda ()
-                         (require 'lsp-pyright)
-                         (lsp-deferred))))
+  :custom (lsp-pyright-langserver-command "pyright")
+  (require 'lsp-pyright)
+  :hook ((lsp-mode-hook . python-mode)))
 
 (use-package lsp-ui
   :ensure t
@@ -350,7 +343,8 @@
 
 (use-package projectile
   :init
-  (setq projectile-project-search-path '("~/.config/emacs-config" "~/Developer/projects"))
+  (setq projectile-project-search-path '("~/.config/emacs-config" "~/Developer/projects")
+	projectile-project-root-files-top-down-recurring '(".projectile"))
   :config
   (projectile-mode +1)
   (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map))
