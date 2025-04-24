@@ -509,5 +509,16 @@
 (use-package bufler
   :bind (("C-x C-b" . bufler-list)))
 
+(use-package mini-frame
+  :config
+  (setq mini-frame-show-parameters '((top . 0) (width . 0.7) (left . 0.5)))
+  (mini-frame-mode 1))
+
+(use-package magit
+  :bind (("C-c m" . magit)))
+
+(use-package forge
+  :after magit)
+
 ;;; packages.el ends here
 

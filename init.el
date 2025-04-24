@@ -53,7 +53,7 @@
 		       centaur-tabs colorful-mode
 		       corfu-candidate-overlay corfu-prescient counsel
 		       dired dirvish drag-stuff dumb-jump
-		       expand-region fontaine goto-line-preview
+		       expand-region fontaine forge goto-line-preview
 		       helpful highlight-thing hydra ivy-prescient
 		       ivy-yasnippet literate-calc-mode lsp-pyright
 		       lsp-ui mwim nerd-icons orderless projectile
