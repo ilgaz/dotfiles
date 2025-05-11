@@ -20,16 +20,19 @@
 
 (defvar emacs-config-directory "~/.config/emacs-config")
 
+(defvar emacs-lib-directory (expand-file-name "lib" emacs-config-directory))
+(defvar emacs-themes-directory (expand-file-name "themes" emacs-config-directory))
+
 (let ((default-directory emacs-config-directory))
-  (normal-top-level-add-to-load-path '("."))
+  (normal-top-level-add-to-load-path '("." "./lib/*"))
   (normal-top-level-add-subdirs-to-load-path)
   
   (require 'beacon)
   (require 'golden-ratio)
-  )
+  (require 'yaml-mode)
+  (require 'ruff-format)
 
-(defvar emacs-lib-directory (expand-file-name "lib" emacs-config-directory))
-(defvar emacs-themes-directory (expand-file-name "themes" emacs-config-directory))
+  (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
 
 (add-to-list 'custom-theme-load-path emacs-themes-directory)
 (dolist (theme-dir (directory-files emacs-themes-directory t "^[^.]"))
@@ -47,20 +50,23 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("a1c18db2838b593fba371cb2623abd8f7644a7811ac53c6530eebdf8b9a25a8d"
+   '("d23adb4d0d0acf5cf4dcdad91e4e70b6c15481bcff4170f28ed2dae90b253d00"
+     "a1c18db2838b593fba371cb2623abd8f7644a7811ac53c6530eebdf8b9a25a8d"
      default))
+ '(org-priority-lowest 70)
  '(package-selected-packages
    '(ace-window aggressive-indent aidermacs anzu apheleia base16-theme
 		bufler centaur-tabs cfrs colorful-mode corfu-prescient
 		counsel dirvish drag-stuff dumb-jump evil
-		expand-region fontaine forge goto-line-preview gptel
-		helpful highlight-thing ivy-prescient ivy-yasnippet
-		literate-calc-mode lsp-pyright lsp-ui mini-frame mwim
-		nerd-icons orderless org-bullets pfuture prettier-js
-		projectile quickrun rainbow-delimiters reformatter
+		exec-path-from-shell expand-region fontaine forge
+		goto-line-preview gptel helpful highlight-thing
+		ivy-prescient ivy-yasnippet literate-calc-mode
+		lsp-pyright lsp-ui mini-frame mwim nerd-icons
+		orderless org-bullets pfuture prettier-js projectile
+		quickrun rainbow-delimiters reformatter
 		sideline-flycheck sideline-lsp simpleclip smartparens
-		string-inflection telephone-line undo-fu
-		undo-fu-session web-mode yasnippet-snippets))
+		soothe-theme string-inflection telephone-line undo-fu
+		undo-fu-session vterm web-mode yasnippet-snippets))
  '(safe-local-variable-values '((flycheck-disabled-checkers emacs-lisp-checkdoc))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -74,27 +80,28 @@
  '(lsp-headerline-breadcrumb-symbols-info-face ((t (:inherit lsp-headerline-breadcrumb-symbols-face :underline (:color "#00b3b3" :style wave :position nil)))))
  '(lsp-ui-sideline-global ((t (:height 2.0 :family "Raleway"))))
  '(org-block ((t (:inherit fixed-pitch))))
- '(org-code ((t (:inherit (shadow fixed-pitch) :height 3))))
+ '(org-code ((t (:inherit (shadow fixed-pitch) :background "gray25" :foreground "gray98" :height 1.4))))
  '(org-document-info ((t (:foreground "dark orange" :height 3))))
  '(org-document-info-keyword ((t (:inherit (shadow fixed-pitch)))))
- '(org-document-title ((t (:inherit default :weight bold :foreground "#d3d3d3" :font "Inter" :height 2.0 :underline nil))))
+ '(org-document-title ((t (:inherit default :weight bold :foreground "unspecified-fg" :font "Inter" :height 2.0 :underline nil))))
  '(org-done ((t (:background "#00ff00" :foreground "black" :box (1 . 1) :weight bold))))
  '(org-indent ((t (:inherit (org-hide fixed-pitch)))))
- '(org-level-1 ((t (:inherit default :weight bold :foreground "#d3d3d3" :font "Inter" :height 1.75))))
- '(org-level-2 ((t (:inherit default :weight bold :foreground "#d3d3d3" :font "Inter" :height 1.5))))
- '(org-level-3 ((t (:inherit default :weight bold :foreground "#d3d3d3" :font "Inter" :height 1.25))))
- '(org-level-4 ((t (:inherit default :weight bold :foreground "#d3d3d3" :font "Inter" :height 1.1))))
- '(org-level-5 ((t (:inherit default :weight bold :foreground "#d3d3d3" :font "Inter"))))
- '(org-level-6 ((t (:inherit default :weight bold :foreground "#d3d3d3" :font "Inter"))))
- '(org-level-7 ((t (:inherit default :weight bold :foreground "#d3d3d3" :font "Inter"))))
- '(org-level-8 ((t (:inherit default :weight bold :foreground "#d3d3d3" :font "Inter"))))
+ '(org-level-1 ((t (:inherit default :weight bold :foreground "unspecified-fg" :font "Inter" :height 1.75))))
+ '(org-level-2 ((t (:inherit default :weight bold :foreground "unspecified-fg" :font "Inter" :height 1.5))))
+ '(org-level-3 ((t (:inherit default :weight bold :foreground "unspecified-fg" :font "Inter" :height 1.25))))
+ '(org-level-4 ((t (:inherit default :weight bold :foreground "unspecified-fg" :font "Inter" :height 1.1))))
+ '(org-level-5 ((t (:inherit default :weight bold :foreground "unspecified-fg" :font "Inter"))))
+ '(org-level-6 ((t (:inherit default :weight bold :foreground "unspecified-fg" :font "Inter"))))
+ '(org-level-7 ((t (:inherit default :weight bold :foreground "unspecified-fg" :font "Inter"))))
+ '(org-level-8 ((t (:inherit default :weight bold :foreground "unspecified-fg" :font "Inter"))))
  '(org-link ((t (:foreground "royal blue" :underline t))))
  '(org-meta-line ((t (:inherit (font-lock-comment-face fixed-pitch)))))
  '(org-property-value ((t (:inherit fixed-pitch))))
  '(org-special-keyword ((t (:inherit (font-lock-comment-face fixed-pitch)))))
  '(org-table ((t (:inherit fixed-pitch :foreground "#83a598"))))
  '(org-todo ((t (:background "dark salmon" :foreground "black" :box (1 . 1) :weight bold))))
- '(org-verbatim ((t (:inherit (shadow fixed-pitch) :height 1.1 :background "gray"))))
+ '(org-verbatim ((t (:inherit (shadow fixed-pitch) :height 1.1 :foreground "black" :background "gray"))))
+ '(sideline-flycheck-error ((t (:inherit error :foreground "firebrick3" :weight thin :height 140 :family "IBM Plex Sans"))))
  '(variable-pitch ((t (:family "Inter" :height 180 :weight thin)))))
 
 ;; Local Variables:

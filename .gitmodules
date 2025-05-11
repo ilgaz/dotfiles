@@ -10,3 +10,12 @@
 [submodule "themes/cyberpunk-theme"]
 	path = themes/cyberpunk-theme
 	url = https://github.com/n3mo/cyberpunk-theme.el
+[submodule "lib/yaml-mode"]
+	path = lib/yaml-mode
+	url = https://github.com/yoshiki/yaml-mode
+[submodule "libs/emacs-ruff-format"]
+	path = libs/emacs-ruff-format
+	url = https://github.com/JoshHayes/emacs-ruff-format
+[submodule "lib/emacs-ruff-format"]
+	path = lib/emacs-ruff-format
+	url = https://github.com/JoshHayes/emacs-ruff-format

@@ -16,9 +16,10 @@
 (delete-selection-mode 1)
 (pixel-scroll-precision-mode 1)
 
-(load-theme 'cyberpunk t)
+;;(load-theme 'cyberpunk t)
 
 (setq auth-sources '("~/.authinfo.gpg" "~/.authinfo"))
+(setq custom-safe-themes t)
 
 ;; hydras
 (defhydra hydra-zoom (global-map "<f2>")
@@ -26,14 +27,25 @@
   ("g" text-scale-increase "in")
   ("l" text-scale-decrease "out"))
 
+;; org-mode
+(setq org-lowest-priority 70
+      org-default-priority 67
+      org-highest-priority 65)
+
+(with-eval-after-load 'org
+  (define-prefix-command 'maps/org-mode)
+  (define-key org-mode-map (kbd "C-c o") 'maps/org-mode)
+  (define-key maps/org-mode (kbd "a") 'org-agenda)
+  (define-key maps/org-mode (kbd "c") 'org-capture)
+  (define-key maps/org-mode (kbd "S") 'org-sort)
+  (define-key maps/org-mode (kbd "[") 'org-backward-heading-same-level)
+  (define-key maps/org-mode (kbd "]") 'org-forward-heading-same-level)
+  (define-key maps/org-mode (kbd "r") 'org-refile)
+  (define-key maps/org-mode (kbd "s") 'org-schedule)
+  (define-key maps/org-mode (kbd "p") 'org-priority))
+
+
 (ivy-mode 1)
-;; (define-key ivy-minibuffer-map (kbd "<return>") 'ivy-alt-done)
-;; (define-key ivy-minibuffer-map (kbd "C-j") 'ivy-alt-done)
-;; (define-key ivy-minibuffer-map (kbd "C-m") 'ivy-done)
-;; (define-key ivy-minibuffer-map (kbd "C-M-h") 'ivy-previous-line-and-call)
-;; (define-key ivy-minibuffer-map (kbd "C-:") 'ivy-dired)
-;; (define-key ivy-minibuffer-map (kbd "C-c o") 'ivy-occur)
-;; (define-key ivy-minibuffer-map (kbd "C-c C-a") 'ivy-read-action)
 
 (defhydra dumb-jump-hydra
   (:color blue :columns 3 :global-map "<f3>")
@@ -124,9 +136,12 @@
  '(variable-pitch ((t (:family "Inter" :height 180 :weight thin))))
  '(fixed-pitch ((t ( :family "CommitMono" :height 160)))))
 
-
 (add-hook 'org-mode-hook 'variable-pitch-mode)
 (add-hook 'org-mode-hook 'visual-line-mode)
+
+(add-hook 'org-mode-hook 'evil-local-mode)
+(add-hook 'markdown-mode 'evil-local-mode)
+(add-hook 'emacs-lisp-mode 'evil-local-mode)
 
 (custom-theme-set-faces
  'user
@@ -141,7 +156,7 @@
  '(org-special-keyword ((t (:inherit (font-lock-comment-face fixed-pitch)))))
  '(org-table ((t (:inherit fixed-pitch :foreground "#83a598"))))
  ;; '(org-tag ((t (:inherit (shadow fixed-pitch) :weight bold))))
- '(org-verbatim ((t (:inherit (shadow fixed-pitch) :height 1.1 :background "gray")))))
+ '(org-verbatim ((t (:inherit (shadow fixed-pitch) :height 1.1 :foreground "black" :background "gray")))))
 
 (message "Finished evaluating config.el")
 

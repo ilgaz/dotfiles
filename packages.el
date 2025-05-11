@@ -10,6 +10,11 @@
   (tab-always-indent 'complete)
   (read-extended-command-predicate #'command-completion-default-include-p))
 
+(use-package exec-path-from-shell
+  :ensure t
+  :config
+  (exec-path-from-shell-copy-envs '("PATH" "GPG_AGENT_INFO" "GPG_TTY" "SSH_AUTH_SOCK")))
+
 (use-package which-key
   :config
   (which-key-mode))
@@ -283,11 +288,11 @@
 (use-package lsp-mode
   :hook (
 	 (lsp-mode . sideline-mode)
-	 (python-mode-hook . lsp-deferred)
-	 )
+	 (lsp-mode . evil-local-mode))
   :config
-  (setq lsp-keymap-prefix "s-l"
-	))
+  (setq lsp-keymap-prefix "s-l")
+  (add-hook 'python-mode-hook 'ruff-format-on-save-mode)
+  (add-hook 'python-mode-hook #'lsp))
 
 (use-package lsp-ui
   :ensure t
@@ -304,8 +309,9 @@
 (use-package sideline
   :init
   (setq sideline-backends-left-skip-current-line t    ; don't display on current line (left)
-	sideline-backends-right-skip-current-line nil
+	sideline-backends-right-skip-current-line t
 	sideline-order-left 'up                       ; or 'up
+	sideline-order-right 'up                       ; or 'up
 	sideline-format-left "■ %s   "                ; format for left aligment
 	sideline-format-right "   %s"                 ; format for right aligment
 	sideline-priority 100                         ; overlays' priority
@@ -324,8 +330,8 @@
 (use-package sideline-flycheck
   :hook (flycheck-mode . sideline-flycheck-setup)
   :config
-  (let ((sideline-font-height 280)
-	(sideline-backend-height (truncate (* 280 0.7)))
+  (let ((sideline-font-height 140)
+	(sideline-backend-height (truncate (* 140 0.7)))
 	)
     (set-face-attribute 'sideline-flycheck-error nil    :family "IBM Plex Sans" :weight 'thin :height sideline-font-height :foreground "firebrick3")
     (set-face-attribute 'sideline-flycheck-warning nil  :family "IBM Plex Sans" :weight 'thin :height sideline-font-height :foreground "goldenrod2")
@@ -334,11 +340,29 @@
 
 (use-package projectile
   :init
-  (setq projectile-project-search-path '("~/.config/emacs-config" "~/Developer/projects")
-	projectile-project-root-files-top-down-recurring '(".projectile"))
+  (setq projectile-project-search-path '("~/.config/emacs-config" "~/Developer/trading" "~/Developer/trading/git")
+	prowjectile-project-root-files-top-down-recurring '(".projectile"))
   :config
   (projectile-mode +1)
-  (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map))
+  (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
+
+  (setq projectile-indexing-method 'alien
+	projectile-enable-caching 'persistent)
+
+  (setq projectile-globally-ignored-directories
+	(append '(".venv" "__pycache__" "**/__pycache__/**" "node_modules")
+		projectile-globally-ignored-directories))
+
+
+  (defcustom projectile-project-root-functions
+    '(projectile-root-local
+      projectile-root-marked
+      projectile-root-bottom-up
+      projectile-root-top-down
+      projectile-root-top-down-recurring)
+    "A list of functions for finding project roots."
+    :group 'projectile
+    :type '(repeat function)))
 
 (use-package dired
   :ensure nil
@@ -491,10 +515,10 @@
   (("C-c g g" . gptel-menu)
    ("C-c g x" . gptel-abort)))
 
-(use-package aidermacs
-  :init
-  (setq aidermacs-backend 'vterm)
-  :bind (("C-c a" . aidermacs-transient-menu)))
+  (use-package aidermacs
+    :init
+    (setq aidermacs-backend 'vterm)
+    :bind (("C-c a" . aidermacs-transient-menu)))
 
 (use-package bufler
   :bind (("C-x C-b" . bufler-list)))
@@ -513,13 +537,18 @@
 (use-package evil
   :config
   (require 'evil)
-  (evil-mode 1)
   ;; TODO: make this DRY
   (define-key evil-insert-state-map (kbd "C-z") 'evil-normal-state)
   (define-key evil-normal-state-map (kbd "C-z") 'evil-normal-state)
   (define-key evil-visual-state-map (kbd "C-z") 'evil-normal-state)
-  (setq evil-undo-system 'undo-fu)
-  )
+  
+  (define-key evil-insert-state-map (kbd "C-\\") 'evil-normal-state)
+  (define-key evil-normal-state-map (kbd "C-\\") 'evil-normal-state)
+  (define-key evil-visual-state-map (kbd "C-\\") 'evil-normal-state)
+  (setq evil-undo-system 'undo-fu))
+
+(use-package soothe-theme
+  :config
+  (load-theme 'soothe t))
 
 ;;; packages.el ends here
-
